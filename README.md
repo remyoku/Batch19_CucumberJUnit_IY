@@ -64,12 +64,12 @@ Feature: Kullanıcı girişi
 
 Her `.feature` dosyasındaki adımların karşılığı `stepdefinitions` paketindeki Java sınıflarında yazılır. Bu sınıflar, sayfa bazlı veya modül bazlı olarak ayrılmıştır.
 
-```java
+#```java
 @Given("kullanıcı login sayfasındadır")
 public void kullanici_login_sayfasindadir() {
     Driver.get().get("https://example.com/login");
 }
-```
+```#
 
 ## 🖥️ Driver Yönetimi
 
@@ -128,7 +128,7 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 
 Senaryo öncesi/sonrası işlemler için `Hooks.java` kullanılabilir:
 
-```java
+#```java
 @Before
 public void setUp() {
     Driver.get();
