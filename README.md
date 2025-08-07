@@ -64,12 +64,7 @@ Feature: Kullanıcı girişi
 
 Her `.feature` dosyasındaki adımların karşılığı `stepdefinitions` paketindeki Java sınıflarında yazılır. Bu sınıflar, sayfa bazlı veya modül bazlı olarak ayrılmıştır.
 
-#```java
-@Given("kullanıcı login sayfasındadır")
-public void kullanici_login_sayfasindadir() {
-    Driver.get().get("https://example.com/login");
-}
-```#
+
 
 ## 🖥️ Driver Yönetimi
 
@@ -104,8 +99,6 @@ Testler çalıştırıldığında otomatik olarak rapor üretilir. Rapor klasör
 /target/cucumber-reports/
 ```
 
-Kullanılan raporlama sistemine göre HTML çıktısı, ekran görüntüsü veya detaylı hata mesajları içerebilir.
-
 ## 🧪 Test Koşum Sınıfı: CukesRunner.java
 
 ```java
@@ -117,7 +110,7 @@ Kullanılan raporlama sistemine göre HTML çıktısı, ekran görüntüsü veya
 public class CukesRunner {}
 ```
 
-> Gerekli importlar:
+### Gerekli importlar:
 
 ```java
 import org.junit.platform.suite.api.*;
@@ -128,15 +121,21 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 
 Senaryo öncesi/sonrası işlemler için `Hooks.java` kullanılabilir:
 
-#```java
-@Before
-public void setUp() {
-    Driver.get();
-}
+```java
+import io.cucumber.java.Before;
+import io.cucumber.java.After;
 
-@After
-public void tearDown() {
-    Driver.closeDriver();
+public class Hooks {
+
+    @Before
+    public void setUp() {
+        Driver.get();
+    }
+
+    @After
+    public void tearDown() {
+        Driver.closeDriver();
+    }
 }
 ```
 
