@@ -7,10 +7,10 @@ import org.openqa.selenium.support.FindBy;
 public class DashboardPage extends BasePage{
 
     @FindBy(xpath = "//h2")
-    public WebElement userName;
+    private WebElement userName;
 
     @FindBy(css = ".breadcrumb>li:nth-of-type(2)")
-    public WebElement pageTitleLeftTop;
+    private WebElement pageTitleLeftTop;
 
     public void verifyUsername(String expectedUsername){
         String actualUsername = userName.getText();

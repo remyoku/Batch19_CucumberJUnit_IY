@@ -7,13 +7,13 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage extends BasePage{
 
     @FindBy(id="email")
-    public WebElement emailBox;
+    private WebElement emailBox;
 
     @FindBy(id="yourPassword")
-    public WebElement passwordBox;
+    private WebElement passwordBox;
 
     @FindBy (xpath = "//button")
-    public WebElement loginBtn;
+    private WebElement loginBtn;
 
 
     public void login(){

@@ -45,14 +45,14 @@ public class Login_StepDefs {
        /* Driver.get().findElement(By.id("email")).sendKeys(ConfigurationReader.get("mail_masimmo"));
         Driver.get().findElement(By.id("yourPassword")).sendKeys(ConfigurationReader.get("password_m"));
         Driver.get().findElement(By.xpath("//button[text()='Login']")).click();*/
-        loginPage.login(ConfigurationReader.get("mail_masimmo"),ConfigurationReader.get("password_m"));
+        loginPage.login(ConfigurationReader.get("mail_masimmo"), ConfigurationReader.get("password_m"));
         //   System.out.println("The user enters Mansimmo's valid credentials");
     }
 
     @Then("The user should be able to see Mansimmo's name on the dashboard page")
     public void the_user_should_be_able_to_see_mansimmo_s_name_on_the_dashboard_page() {
 //        String actualUserName = Driver.get().findElement(By.tagName("h2")).getText();
-       // String expectedUserName = ConfigurationReader.get("userName_m");
+        // String expectedUserName = ConfigurationReader.get("userName_m");
 //        Assert.assertEquals("İsimler aynı olmalı", expectedUserName, actualUserName);
         dashboardPage.verifyUsername(ConfigurationReader.get("userName_m"));
 
@@ -61,11 +61,13 @@ public class Login_StepDefs {
     @When("The user enters Mike's credentials")
     public void the_user_enters_mike_s_credentials() {
         //  System.out.println("The user enters Mike's valid credentials");
+        loginPage.login(ConfigurationReader.get("mail_mike"), ConfigurationReader.get("password_mike"));
     }
 
     @When("The user enters Rosa's credentials")
     public void the_user_enters_rosa_s_credentials() {
         //   System.out.println("The user enters Rosa's valid credentials");
+        loginPage.login(ConfigurationReader.get("mail_rosa"), ConfigurationReader.get("password_r"));
 
 
     }
@@ -73,7 +75,44 @@ public class Login_StepDefs {
     @When("The user enters Leroy's credentials")
     public void the_user_enters_leroy_s_credentials() {
         //  System.out.println("The user enters Leroy's valid credentials");
+        loginPage.login(ConfigurationReader.get("mail_learoy"), ConfigurationReader.get("password_l"));
+    }
+
+    @Then("The user should be able to see Mike's name on the dashboard page")
+    public void the_user_should_be_able_to_see_mike_s_name_on_the_dashboard_page() {
+        dashboardPage.verifyUsername(ConfigurationReader.get("userName_mike"));
+    }
+
+    @Then("The user should be able to see Rosa's name on the dashboard page")
+    public void the_user_should_be_able_to_see_rosa_s_name_on_the_dashboard_page() {
+        dashboardPage.verifyUsername(ConfigurationReader.get("userName_r"));
+    }
+
+    @Then("The user should be able to see Leeroy's name on the dashboard page")
+    public void the_user_should_be_able_to_see_leeroy_s_name_on_the_dashboard_page() {
+        dashboardPage.verifyUsername(ConfigurationReader.get("userName_l"));
 
     }
+    @When("The user logins with {string} and {string}")
+    public void the_user_logins_with_and(String email, String password) {
+       loginPage.login(email,password);
+    }
+    @Then("The user should be able to {string} on dashboard page")
+    public void the_user_should_be_able_to_on_dashboard_page(String username) {
+        dashboardPage.verifyUsername(username);
+    }
+    @Then("The number is {int}")
+    public void the_number_is(Integer intNumber) {
+        System.out.println(intNumber);
+    }
+    @Then("The number also is {double}")
+    public void the_number_also_is(Double doubleNumber) {
+        System.out.println(doubleNumber);
+    }
+    @Then("The number can be {double}")
+    public void the_number_can_be(double double1Number) {
+        System.out.println(double1Number);
+    }
+
 
 }

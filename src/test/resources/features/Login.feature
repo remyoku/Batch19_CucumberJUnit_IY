@@ -7,13 +7,13 @@ Feature: Login Function
   #test case = scenario
   #test steps = given
 
-  @admin @smoke @wip
+  @admin @smoke
   Scenario: Login as remyoku
     Given The user is on the login page
     When The user enters remyoku's credentials
     Then The user should be able to see dashboard page
 
-  @dev @smoke @wip
+  @dev @smoke
   Scenario: Login as Mansimmo
     Given The user is on the login page
     When The user enters Mansimmo's credentials
