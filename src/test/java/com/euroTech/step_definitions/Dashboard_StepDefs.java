@@ -3,10 +3,13 @@ package com.euroTech.step_definitions;
 import com.euroTech.pages.DashboardPage;
 import com.euroTech.pages.DevelopersPage;
 import com.euroTech.pages.LoginPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.hu.De;
 import org.junit.Assert;
+
+import java.util.List;
 
 public class Dashboard_StepDefs {
 
@@ -37,10 +40,22 @@ public class Dashboard_StepDefs {
         dashboardPage.navigateToTabs(tabName, module);
     }
 
-    @Then("The user should be able to see related page title : {string}")
-    public void the_user_should_be_able_to_see_related_page_title(String pageTitle) {
-      //  developersPage.getPageTitleWithTab();
-        developersPage.getPageTitleWithModule();
+
+    @Then("The user should verify the dashboard tabs with follows")
+    public void the_user_should_verify_the_dashboard_tabs_with_follows(List<String > dashboardTabsTexts) {
+        List<String> actualTabTexts = dashboardPage.getDashboardTabsTexts();
+
+        Assert.assertEquals(dashboardTabsTexts,actualTabTexts);
     }
+    @Then("The user should be able to see related page title with three parts : {string}")
+    public void the_user_should_be_able_to_see_related_page_title_with_three_parts(String pageTitle) {
+      Assert.assertEquals(pageTitle,developersPage.getPageTitleWithModule());
+    }
+    @Then("The user should be able to see related page title with two parts : {string}")
+    public void the_user_should_be_able_to_see_related_page_title_with_two_parts(String exceptedTab) {
+       String actualTab= dashboardPage.getPageTitleWithTab();
+       Assert.assertEquals(exceptedTab,actualTab);
+    }
+
 
 }

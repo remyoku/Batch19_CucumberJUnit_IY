@@ -30,10 +30,35 @@ Feature: Login Tests With Cucumber Parameters
     And The number also is 5.56
     And The number can be 12.7
 
-  #manssimo yapılcak
 
   Scenario: Login as Mansimmo - Cucumber Parameters
    # Given The user is on the login page
     When The user logins with "Ramanzi@test.com" and "Test123456"
     Then The user should be able to "Mansimmo" on dashboard page
 
+
+  Scenario: Login with credential list mike
+    When The user login and verify with following credentials
+      | mike@gmail.com |
+      | mike1234       |
+      | mike           |
+
+
+  Scenario: Login with credential list Rosa
+    When The user login and verify with following credentials
+      | rosa@test.com |
+      | Test123456    |
+      | Rosa          |
+
+  Scenario: Login with credential map Rosa
+    When The user login and verify with following credentials map
+      | user_email | rosa@test.com |
+      | password   | Test123456    |
+      | user_name  | Rosa          |
+
+
+  Scenario: Login with credential map Leeroy
+    When The user login and verify with following credentials map
+      | user_email | leeroyjenkins@email.com |
+      | password   | 1234.Asdf               |
+      | user_name  | Leeroy                  |

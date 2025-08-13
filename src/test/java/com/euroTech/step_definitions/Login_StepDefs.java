@@ -10,6 +10,9 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
+import java.util.List;
+import java.util.Map;
+
 public class Login_StepDefs {
 
     LoginPage loginPage = new LoginPage();
@@ -93,26 +96,45 @@ public class Login_StepDefs {
         dashboardPage.verifyUsername(ConfigurationReader.get("userName_l"));
 
     }
+
     @When("The user logins with {string} and {string}")
     public void the_user_logins_with_and(String email, String password) {
-       loginPage.login(email,password);
+        loginPage.login(email, password);
     }
+
     @Then("The user should be able to {string} on dashboard page")
     public void the_user_should_be_able_to_on_dashboard_page(String username) {
         dashboardPage.verifyUsername(username);
     }
+
     @Then("The number is {int}")
     public void the_number_is(Integer intNumber) {
         System.out.println(intNumber);
     }
+
     @Then("The number also is {double}")
     public void the_number_also_is(Double doubleNumber) {
         System.out.println(doubleNumber);
     }
+
     @Then("The number can be {double}")
     public void the_number_can_be(double double1Number) {
         System.out.println(double1Number);
     }
+
+    @When("The user login and verify with following credentials")
+    public void the_user_login_and_verify_with_following_credentials(List<String> credentials) {
+        loginPage.login(credentials.get(0), credentials.get(1));
+        dashboardPage.verifyUsername(credentials.get(2));
+
+    }
+    @When("The user login and verify with following credentials map")
+    public void the_user_login_and_verify_with_following_credentials_map(Map<String,String> credentialsMap) {
+        loginPage.login(credentialsMap.get("user_email"), credentialsMap.get("password"));
+        dashboardPage.verifyUsername(credentialsMap.get("user_name"));
+
+    }
+
 
 
 }
