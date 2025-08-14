@@ -128,13 +128,17 @@ public class Login_StepDefs {
         dashboardPage.verifyUsername(credentials.get(2));
 
     }
+
     @When("The user login and verify with following credentials map")
-    public void the_user_login_and_verify_with_following_credentials_map(Map<String,String> credentialsMap) {
+    public void the_user_login_and_verify_with_following_credentials_map(Map<String, String> credentialsMap) {
         loginPage.login(credentialsMap.get("user_email"), credentialsMap.get("password"));
         dashboardPage.verifyUsername(credentialsMap.get("user_name"));
 
     }
 
-
+    @Then("The user should be able to see warning {string}")
+    public void the_user_should_be_able_to_see_warning(String warningMessage) {
+        loginPage.verifyWarningMessage(warningMessage);
+    }
 
 }

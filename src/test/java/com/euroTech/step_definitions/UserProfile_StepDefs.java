@@ -29,6 +29,28 @@ public class UserProfile_StepDefs {
 
     @Then("The user should be able to verify add education form labels with following list")
     public void the_user_should_be_able_to_verify_add_education_form_labels_with_following_list(List<String> educationLabels) {
-        Assert.assertEquals(educationLabels, addEducationPage.getAddEducationFormLabelsTexts());
+        //  Assert.assertEquals(educationLabels, addEducationPage.getAddEducationFormLabelsTexts());
+        // verify işlemini add education page de yapalım.
+        addEducationPage.verifyAddEducationFormLabels(educationLabels);
+    }
+
+    @Then("The user verify that add education page is displayed")
+    public void the_user_verify_that_add_education_page_is_displayed() {
+        addEducationPage.verifyAddEducationPageIsDisplayed();
+    }
+
+    @When("The user fills the education form with {string} and {string} and {string} and {string} and {string} and {string}")
+    public void the_user_fills_the_education_form_with_and_and_and_and_and(String schoolName, String degree, String study, String fromDate, String toDate, String desc) {
+        addEducationPage.filingAddEducationForm(schoolName, degree, study, fromDate, toDate, desc);
+    }
+
+    @Then("The user should be able to verify added education record with {string}")
+    public void the_user_should_be_able_to_verify_added_education_record_with(String schoolName) {
+       userProfilePage.verifyLastAddedSchoolRecordWithSchoolName(schoolName);
+    }
+
+    @Then("The user should be able to delete last added education record with {string}")
+    public void the_user_should_be_able_to_delete_last_added_education_record_with(String schoolName) {
+        userProfilePage.deleteLastAddedEducationRecord(schoolName);
     }
 }

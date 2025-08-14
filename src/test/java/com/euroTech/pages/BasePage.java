@@ -34,10 +34,11 @@ public abstract class BasePage {
     public void navigateToTabs(String tabName, String moduleName) {
         WebElement tab = Driver.get().findElement(By.xpath("//span[text()='" + tabName + "']"));
         tab.click();
-        WebElement module = Driver.get().findElement(By.xpath("//span[text()='" + moduleName + "']"));
-        module.click();
+        if (!moduleName.isEmpty()) {
+            WebElement module = Driver.get().findElement(By.xpath("//span[text()='" + moduleName + "']"));
+            module.click();
+        }
     }
-
     public String getPageTitleWithTab() {
         return pageTitleWithTab.getText();
     }
@@ -49,7 +50,4 @@ public abstract class BasePage {
     public List<String> getDashboardTabsTexts() {
         return BrowserUtils.getElementsText(dashboardTabElements);
     }
-
-
-
 }

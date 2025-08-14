@@ -3,6 +3,7 @@ package com.euroTech.pages;
 
 import com.euroTech.utilities.BrowserUtils;
 import com.euroTech.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -44,5 +45,14 @@ public class AddEducationPage extends BasePage {
     public List<String > getAddEducationFormLabelsTexts(){
         BrowserUtils.waitForVisibility(addEducationBtn,10);
         return BrowserUtils.getElementsText(educationFormLabels);
+    }
+
+    public void verifyAddEducationFormLabels(List<String> exceptedLabels){
+        Assert.assertEquals(exceptedLabels,getAddEducationFormLabelsTexts());
+    }
+
+    public void verifyAddEducationPageIsDisplayed() {
+        Assert.assertTrue( BrowserUtils.waitForVisibility(addEducationBtn,10).isDisplayed());
+
     }
 }

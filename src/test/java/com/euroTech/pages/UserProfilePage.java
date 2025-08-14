@@ -3,6 +3,7 @@ package com.euroTech.pages;
 
 import com.euroTech.utilities.BrowserUtils;
 import com.euroTech.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -50,5 +51,9 @@ public class UserProfilePage extends BasePage {
         Alert alert =Driver.get().switchTo().alert();
         BrowserUtils.waitFor(5);
         alert.accept();
+    }
+    public void verifyLastAddedSchoolRecordWithSchoolName(String schoolName){
+        Assert.assertEquals(schoolName,lastAddedSchoolName(schoolName));
+
     }
 }
