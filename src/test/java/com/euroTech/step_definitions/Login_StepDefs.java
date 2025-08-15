@@ -2,8 +2,10 @@ package com.euroTech.step_definitions;
 
 import com.euroTech.pages.DashboardPage;
 import com.euroTech.pages.LoginPage;
+import com.euroTech.utilities.BrowserUtils;
 import com.euroTech.utilities.ConfigurationReader;
 import com.euroTech.utilities.Driver;
+import com.euroTech.utilities.ExcelUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -133,7 +135,6 @@ public class Login_StepDefs {
     public void the_user_login_and_verify_with_following_credentials_map(Map<String, String> credentialsMap) {
         loginPage.login(credentialsMap.get("user_email"), credentialsMap.get("password"));
         dashboardPage.verifyUsername(credentialsMap.get("user_name"));
-
     }
 
     @Then("The user should be able to see warning {string}")
@@ -141,4 +142,56 @@ public class Login_StepDefs {
         loginPage.verifyWarningMessage(warningMessage);
     }
 
+    @When("The user logins with using excel file: {string} and {string} and {int}")
+    public void the_user_logins_with_using_excel_file_and_and(String path, String sheetName, int row) {
+        List<Map<String, String>> excelData = BrowserUtils.getExcelDataToListOfMap(path, sheetName);
+
+        String yourEmail = excelData.get(row).get("Your Email");
+        String password = excelData.get(row).get("Password");
+        loginPage.login(yourEmail, password);
+
+    }
+
+    @Then("The user verifies success login with excel file: {string} and {string} and {int}")
+    public void the_user_verifies_success_login_with_excel_file_and_and(String path, String sheetName, int row) {
+        List<Map<String, String>> excelData = BrowserUtils.getExcelDataToListOfMap(path, sheetName);
+        String exceptedUserName = excelData.get(row).get("Your Name");
+        dashboardPage.verifyUsername(exceptedUserName);
+    }
+
+    @When("The user logins with using excel file: {int}")
+    public void the_user_logins_with_using_excel_file(int row) {
+        List<Map<String, String>> excelData = BrowserUtils.getExcelDataToListOfMap(ConfigurationReader.get("excelPath"), ConfigurationReader.get("sheet"));
+        String yourEmail = excelData.get(row).get("Your Email");
+        String password = excelData.get(row).get("Password");
+        loginPage.login(yourEmail, password);
+    }
+
+    @Then("The user verifies success login with excel file: {int}")
+    public void the_user_verifies_success_login_with_excel_file(int row) {
+        List<Map<String, String>> excelData = BrowserUtils.getExcelDataToListOfMap(ConfigurationReader.get("excelPath"),ConfigurationReader.get("sheet"));
+        String exceptedUserName = excelData.get(row).get("Your Name");
+        dashboardPage.verifyUsername(exceptedUserName);
+    }
+    @When("The user logins with using excel file: {string} and {string} and makes verify")
+    public void the_user_logins_with_using_excel_file_and_and_makes_verify(String path, String sheetName) {
+        List<Map<String, String>> excelData = BrowserUtils.getExcelDataToListOfMap(path, sheetName);
+        int rowCount = excelData.size();
+        for (int i = 0; i < rowCount; i++) {
+            String yourEmail = excelData.get(i).get("Your Email");
+            String password = excelData.get(i).get("Password");
+            loginPage.login(yourEmail,password);
+
+            String exceptedUserName = excelData.get(i).get("Your Name");
+            dashboardPage.verifyUsername(exceptedUserName);
+
+            dashboardPage.navigateToTabs(exceptedUserName,"Sign Out");
+
+            loginPage.getLoginLink().click();
+        }
+    }
+
+
 }
+
+

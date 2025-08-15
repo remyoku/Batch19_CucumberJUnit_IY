@@ -18,6 +18,9 @@ public class LoginPage extends BasePage{
     @FindBy (xpath = "//button")
     private WebElement loginBtn;
 
+    @FindBy(xpath = "//span[text()='Login']")
+    private WebElement loginLink;
+
 
     public void login(){
         emailBox.sendKeys(ConfigurationReader.get("email"));
@@ -35,6 +38,10 @@ public class LoginPage extends BasePage{
     }
     public void verifyWarningMessage(String exceptedMessage){
         Assert.assertEquals(exceptedMessage,getWarningMessage(exceptedMessage));
+    }
+    public WebElement getLoginLink(){
+        return loginLink;
+
     }
 
 }

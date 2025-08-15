@@ -17,6 +17,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class BrowserUtils {
     /**
@@ -429,6 +430,10 @@ public class BrowserUtils {
 
     public static String getEnvData(String variableName){
         return  System.getenv(variableName);
+    }
+    public static List<Map<String ,String>> getExcelDataToListOfMap(String path, String sheet){
+        ExcelUtil excelUtil= new ExcelUtil(path,sheet);
+       return excelUtil.getDataList();
     }
 
 }

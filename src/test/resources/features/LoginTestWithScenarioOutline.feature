@@ -1,6 +1,5 @@
 Feature: Login tests with scenario outline
 
-
   Scenario Outline: Positive Login Tests <username>
     Given The user is on the login page
     When The user logins with "<email>" and "<password>"
@@ -12,7 +11,6 @@ Feature: Login tests with scenario outline
       | mgezer@gmail.com     | Mg12345678 | Melih Gezer |
       | user33@test.com      | Test123456 | User33      |
       | mike@gmail.com       | mike1234   | mike        |
-
 
   Scenario Outline: Negative Login Tests
     Given The user is on the login page
