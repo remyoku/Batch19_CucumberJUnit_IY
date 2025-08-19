@@ -31,7 +31,7 @@ Feature: Login Test With Excel File
       | 6   |
       | 7   |
 
-  @wip
+
   Scenario Outline: Login Test -3
     Given The user is on the login page
     When The user logins with using excel file: "<path>" and "<sheetName>" and makes verify
