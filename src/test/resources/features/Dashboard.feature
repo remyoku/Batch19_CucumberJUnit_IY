@@ -1,7 +1,7 @@
 @regression
 Feature: Dashboard Tests
 
-  @smoke
+  @smoke @paralel
   Scenario: Developers Page Test
     Given The user is on the login page
     When The user enters remyoku's credentials
@@ -9,7 +9,7 @@ Feature: Dashboard Tests
     When The user clicks on developers link
     Then The user should be able to see developers page title
 
-
+  @wip
   Scenario: Developers Page Test - Cucumber Parameters
     Given The user is on the login page
     When The user logins with "liorariven@gmail.com" and "Irem.2113"

@@ -36,7 +36,7 @@ Feature: Login Tests With Cucumber Parameters
     When The user logins with "Ramanzi@test.com" and "Test123456"
     Then The user should be able to "Mansimmo" on dashboard page
 
-
+  @paralel
   Scenario: Login with credential list mike
     When The user login and verify with following credentials
       | mike@gmail.com |

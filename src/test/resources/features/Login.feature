@@ -32,7 +32,7 @@ Feature: Login Function
     When The user enters Rosa's credentials
     Then The user should be able to see Rosa's name on the dashboard page
 
-   @admin
+   @admin @paralel
   Scenario: Login as Leroy
     Given The user is on the login page
     When The user enters Leroy's credentials
